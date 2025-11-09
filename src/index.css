@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+h1 {
+  @apply tracking-widest;
+}
+h2 {
+  @apply tracking-[0.7rem] font-bold my-5;
+}
+
+.pokemon-card {
+  @apply basis-[30%] flex justify-evenly   items-center flex-col h-[280px] mt-6 border rounded-xl bg-amber-300 max-w-[400px] hover:bg-amber-400 cursor-pointer shadow-md hover:shadow-2xl transform transition-transform duration-300 ease-out hover:scale-105;
+}

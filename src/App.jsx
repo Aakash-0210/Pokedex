@@ -1,4 +1,6 @@
-const Pokedex = () => {
-  return <div>Pokedex</div>;
+import Pokedex from "./Components/Pokedex/Pokedex";
+
+const App = () => {
+  return <Pokedex />;
 };
-export default Pokedex;
+export default App;
