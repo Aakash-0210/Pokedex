@@ -1,38 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Pokemon from "../Pokemon/Pokemon";
+import { usePokemonList } from "../Hooks/usePokemonList";
 
 const PokemonList = () => {
-  const [pokemonList, setPokemonList] = useState([]);
   const DEFAULT_URL = `https://pokeapi.co/api/v2/pokemon/`;
-  const [pokedexurl, setPokedexurl] = useState(DEFAULT_URL);
-  const [nextUrl, setNextUrl] = useState(DEFAULT_URL);
-  const [prevUrl, setPrevUrl] = useState(DEFAULT_URL);
 
-  const fetchPokemonData = async function () {
-    const POKEMON_URL = pokedexurl ? pokedexurl : DEFAULT_URL;
-    const respons = await axios.get(POKEMON_URL);
-    const result = respons.data.results;
-    setNextUrl(respons.data.next);
-    setPrevUrl(respons.data.previous);
-
-    const pokemonListData = await Promise.all(
-      result.map(async (pokemon) => {
-        const res = await axios.get(pokemon.url);
-        return {
-          name: res.data.name,
-          id: res.data.id,
-          image: res.data.sprites.other.dream_world.front_default,
-          type: res.data.types.map((t) => t.type.name),
-        };
-      })
-    );
-    setPokemonList(pokemonListData);
-  };
-  useEffect(() => {
-    fetchPokemonData();
-  }, [pokedexurl]);
-
+  const [pokemonList, setPokedexurl, nextUrl, prevUrl] =
+    usePokemonList(DEFAULT_URL);
   return (
     <div className="flex flex-col items-center  my-8">
       <div className="flex gap-3">

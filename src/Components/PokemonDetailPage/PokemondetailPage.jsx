@@ -1,31 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
+import { usePokemon } from "../Hooks/usePokemon";
+import Pokemon from "../Pokemon/Pokemon";
 
 const PokemondetailPage = () => {
-  const [pokemon, setPokemon] = useState({});
-  const { id } = useParams();
-  const fetchPokemonDetail = async function () {
-    const POKEMON_DEFAULT_URL = "https://pokeapi.co/api/v2/pokemon/";
-    const response = await axios.get(POKEMON_DEFAULT_URL + id);
-    console.log(response.data);
-    const pokemon = {
-      name:
-        response.data.name.charAt(0).toUpperCase() +
-        response.data.name.slice(1),
-      id: response.data.id,
-      image: response.data.sprites.other.dream_world.front_default,
-      type: response.data.types,
-      height: response.data.height,
-      weight: response.data.weight,
-    };
-    setPokemon(pokemon);
-  };
-
-  useEffect(() => {
-    fetchPokemonDetail();
-    console.log(pokemon);
-  }, []);
+  const { pokemon, pokemonList } = usePokemon();
   return (
     <>
       <Link to="/" className="flex justify-center">
@@ -51,8 +29,8 @@ const PokemondetailPage = () => {
               Weight:<span className="ml-1">{pokemon.weight}</span>
             </h3>
           </div>
-          <div className="flex h-[50px] items-center justify-center mt-4">
-            <h3 className="text-black text-xl font-semibold">Types:</h3>
+          <div className="flex h-[50px] items-center justify-center mt-4 ">
+            <h3 className="text-black text-xl font-semibold mr-2  ">Types:</h3>
 
             {pokemon.type?.map((t) => (
               <span
@@ -65,6 +43,12 @@ const PokemondetailPage = () => {
           </div>
         </div>
       )}
+      <h3 className="text-3xl font-bold  m-10">Similar Pokemons</h3>
+      <div className="flex flex-wrap justify-center space-x-15 items-center mb-6">
+        {pokemonList.map((p) => (
+          <Pokemon name={p.name} url={p.image} key={p.id} id={p.id} />
+        ))}
+      </div>
     </>
   );
 };
