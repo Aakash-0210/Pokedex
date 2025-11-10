@@ -51,7 +51,7 @@ const PokemonList = () => {
       </div>
       <div className="flex flex-wrap justify-evenly items-center ">
         {pokemonList.map((p) => (
-          <Pokemon name={p.name} url={p.image} key={p.id} />
+          <Pokemon name={p.name} url={p.image} key={p.id} id={p.id} />
         ))}
       </div>
     </div>
