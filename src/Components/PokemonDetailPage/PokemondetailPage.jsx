@@ -2,8 +2,8 @@ import { Link } from "react-router";
 import { usePokemon } from "../Hooks/usePokemon";
 import Pokemon from "../Pokemon/Pokemon";
 
-const PokemondetailPage = () => {
-  const { pokemon, pokemonList } = usePokemon();
+const PokemondetailPage = ({ pokemonName }) => {
+  const { pokemon, pokemonList } = usePokemon(pokemonName);
   return (
     <>
       <Link to="/" className="flex justify-center">

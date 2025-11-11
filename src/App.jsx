@@ -7,6 +7,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Pokedex />} />
       <Route path="/pokemon/:id" element={<PokemondetailPage />} />
+      <Route
+        path="/pokemon/*"
+        element={<h1 className="text-3xl text-center">Not found </h1>}
+      />
     </Routes>
   );
 };

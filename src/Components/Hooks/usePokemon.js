@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import downloadPokemon from "../../utils/downloadPokemon";
 
-export const usePokemon = () => {
+export const usePokemon = (pokemonName) => {
+    console.log(pokemonName)
     const { id } = useParams();
     const POKEMON_DEFAULT_URL = "https://pokeapi.co/api/v2/pokemon/";
     const [pokemon, setPokemon] = useState({});
@@ -13,7 +14,7 @@ export const usePokemon = () => {
     const [prevUrl, setPrevUrl] = useState();
 
     const fetchPokemonDetail = async function () {
-        const response = await axios.get(POKEMON_DEFAULT_URL + id);
+        const response = await axios.get(POKEMON_DEFAULT_URL + ((pokemonName) ? pokemonName : id));
         const pokemon = {
             name:
                 response.data.name.charAt(0).toUpperCase() +
@@ -38,7 +39,7 @@ export const usePokemon = () => {
     useEffect(() => {
         downloadPokemonAndRelated(id)
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }, [id]);
+    }, [id, pokemonName]);
 
     return { pokemon, pokemonList }
 }
