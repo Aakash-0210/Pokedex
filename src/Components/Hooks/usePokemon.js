@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import downloadPokemon from "../../utils/downloadPokemon";
 
 export const usePokemon = (pokemonName) => {
-    console.log(pokemonName)
     const { id } = useParams();
     const POKEMON_DEFAULT_URL = "https://pokeapi.co/api/v2/pokemon/";
     const [pokemon, setPokemon] = useState({});

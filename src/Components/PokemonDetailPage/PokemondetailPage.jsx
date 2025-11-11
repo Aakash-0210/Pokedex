@@ -46,7 +46,13 @@ const PokemondetailPage = ({ pokemonName }) => {
       <h3 className="text-3xl font-bold  m-10">Similar Pokemons</h3>
       <div className="flex flex-wrap justify-center space-x-15 items-center mb-6">
         {pokemonList.map((p) => (
-          <Pokemon name={p.name} url={p.image} key={p.id} id={p.id} />
+          <Pokemon
+            name={p.name}
+            url={p.image}
+            key={p.id}
+            id={p.id}
+            type={p.type[0]}
+          />
         ))}
       </div>
     </>

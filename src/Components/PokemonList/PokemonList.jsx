@@ -7,7 +7,7 @@ const PokemonList = () => {
   const [pokemonList, setPokedexurl, nextUrl, prevUrl] =
     usePokemonList(DEFAULT_URL);
   return (
-    <div className="flex flex-col items-center  my-8">
+    <div className="flex flex-col items-center my-8">
       <div className="flex gap-3">
         <button
           onClick={() => setPokedexurl(prevUrl)}
@@ -24,7 +24,13 @@ const PokemonList = () => {
       </div>
       <div className="flex flex-wrap justify-evenly items-center ">
         {pokemonList.map((p) => (
-          <Pokemon name={p.name} url={p.image} key={p.id} id={p.id} />
+          <Pokemon
+            name={p.name}
+            url={p.image}
+            key={p.id}
+            id={p.id}
+            type={p.type[0]}
+          />
         ))}
       </div>
     </div>
